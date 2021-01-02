@@ -14,6 +14,10 @@ ipykernel = "^5.4.2"
 tensorflow = "^2.4.0"
 Pillow = "^8.0.1"
 scikit-image = "^0.18.1"
+pandas = "^1.2.0"
+matplotlib = "^3.3.3"
+seaborn = "^0.11.1"
+sklearn = "^0.0"
 
 [tool.poetry.dev-dependencies]
 
