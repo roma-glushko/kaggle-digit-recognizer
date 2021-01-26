@@ -1,5 +1,50 @@
-## CNN
+# Experiment Notes
 
+## SVM
+
+### PCA(n_comp=154), RBF SVC - 0.9925, 0.9762, 0.97610 [training set]
+### PCA(n_comp=154), RBF SVC - 0.9927, 0.9712 [reduced traning set]
+### PCA(n_comp=154), SVC(RBF, gamma=0.05) - 0.9991, 0.9736 [reduced traning set]
+### PCA(n_comp=154), SVC(RBF, gamma=0.1) - ?, 0.92?? [reduced traning set]
+### PCA(n_comp=154), SVC(RBF, gamma=0.05, C=0.001) - 0.1116, 0.1116 [reduced traning set]
+### PCA(n_comp=154), SVC(RBF, gamma=0.05, C=0.01) -  0.3920, 0.3179 [reduced traning set]
+### PCA(n_comp=154), SVC(RBF, gamma=0.05, C=5) - 1, 0.9738 [reduced traning set]
+
+## MLP
+
+### Denses(200, relu) + Dropout(.2) + BatchNorm + Dense(150, relu) + Dropout(.2) + BatchNorm
+
+Best Validation Loss: 0.0810
+Best Validation Accuracy: 0.9771
+Test Validation Loss: 0.0957236960530281
+Test Accuracy: 0.9724206328392029
+
+### Denses(200) + BatchNorm + LeakyReLu + Dropout(.2) + Dense(150) + BatchNorm + LeakyReLu + Dropout(.2) 
+
+Best Validation Loss: 0.1024
+Best Validation Accuracy: 0.9723
+Test Validation Loss: 0.11114469170570374
+Test Accuracy: 0.9676587581634521
+
+### Denses(200) + BatchNorm + ReLu + Dropout(.2) + Dense(150) + BatchNorm + ReLu + Dropout(.2) 
+Best Validation Loss: 0.0800
+Best Validation Accuracy: 0.9789
+Test Validation Loss: 0.09856043756008148
+Test Accuracy: 0.9724206328392029
+
+### Denses(200) + BatchNorm + ReLu + Dropout(.2) + Dense(200) + BatchNorm + ReLu + Dropout(.2) 
+Best Validation Loss: 0.0807
+Best Validation Accuracy: 0.9787
+Test Validation Loss: 0.08998408168554306
+Test Accuracy: 0.9740079641342163
+
+### Denses(512) + BatchNorm + ReLu + Dropout(.2)
+Best Validation Loss: 0.0902
+Best Validation Accuracy: 0.9773
+Test Validation Loss: 0.10907424241304398
+Test Accuracy: 0.9708333611488342
+
+## CNN
 ### Baseline CNN
 
 - Best Val Loss: 0.0337
@@ -1193,4 +1238,628 @@ learning_rate_reducer = ReduceLROnPlateau(
     factor=0.5, 
     min_lr=5e-10,
     verbose=1, 
+```
+
+### CNN: Data Augmentation
+
+Best Val Loss: 0.0221
+Best Val Accuracy: 0.9956
+Train Loss: 0.0250
+Train Accuracy: 0.9943
+0.026448724791407585, 0.9930555820465088
+
+```
+cnn_input_layer = Input((28, 28, 1))
+
+cnn = Conv2D(32, 3, activation='relu', padding='same')(cnn_input_layer)
+cnn = Conv2D(32, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = MaxPool2D(2)(cnn)
+cnn = Dropout(0.35)(cnn)
+
+cnn = Conv2D(64, 3, activation='relu', padding='same')(cnn)
+cnn = Conv2D(64, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = MaxPool2D(2)(cnn)
+cnn = Dropout(0.35)(cnn)
+
+cnn = Conv2D(128, 3, activation='relu', padding='same')(cnn)
+cnn = Conv2D(128, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = Dropout(0.35)(cnn)
+
+cnn = Flatten()(cnn)
+
+cnn = Dense(64, kernel_initializer='he_normal')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = ReLU()(cnn)
+cnn = Dropout(0.2)(cnn)
+
+cnn = Dense(32, kernel_initializer='he_normal')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = ReLU()(cnn)
+cnn = Dropout(0.2)(cnn)
+
+cnn_output_layer = Dense(NUM_CLASSES, activation='softmax')(cnn)
+
+cnn_model = Model(cnn_input_layer, cnn_output_layer, name='CNN')
+
+optimizer = Adam(lr=1e-3)
+batch_size=128
+learning_rate_reducer = ReduceLROnPlateau(
+    monitor='val_loss', 
+    patience=3, 
+    factor=0.5, 
+    min_lr=5e-10,
+    verbose=1, 
+data_augmentator = ImageDataGenerator(
+    rotation_range = 10,  
+    zoom_range = 0.1, 
+    width_shift_range = 0.1, 
+    height_shift_range = 0.1
+)
+
+```
+
+### CNN
+
+Best Val Loss: 0.0216
+Best Val Accuracy: 0.9957
+Train Loss: 0.0229
+Train Accuracy: 0.9943
+0.026916267350316048, 0.9930555820465088
+
+```
+cnn_input_layer = Input((28, 28, 1))
+
+cnn = Conv2D(32, 3, activation='relu', padding='same')(cnn_input_layer)
+cnn = Conv2D(32, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = MaxPool2D(2)(cnn)
+cnn = Dropout(0.2)(cnn)
+
+cnn = Conv2D(64, 3, activation='relu', padding='same')(cnn)
+cnn = Conv2D(64, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = MaxPool2D(2)(cnn)
+cnn = Dropout(0.2)(cnn)
+
+cnn = Conv2D(128, 3, activation='relu', padding='same')(cnn)
+cnn = Conv2D(128, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = Dropout(0.2)(cnn)
+
+cnn = Flatten()(cnn)
+
+cnn = Dense(64, kernel_initializer='he_normal')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = ReLU()(cnn)
+cnn = Dropout(0.2)(cnn)
+
+cnn = Dense(32, kernel_initializer='he_normal')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = ReLU()(cnn)
+cnn = Dropout(0.2)(cnn)
+
+cnn_output_layer = Dense(NUM_CLASSES, activation='softmax')(cnn)
+
+cnn_model = Model(cnn_input_layer, cnn_output_layer, name='CNN')
+
+optimizer = Adam(lr=1e-3)
+batch_size=128
+learning_rate_reducer = ReduceLROnPlateau(
+    monitor='val_loss', 
+    patience=3, 
+    factor=0.5, 
+    min_lr=5e-10,
+    verbose=1, 
+data_augmentator = ImageDataGenerator(
+    rotation_range = 10,  
+    zoom_range = 0.1, 
+    width_shift_range = 0.1, 
+    height_shift_range = 0.1
+)
+```
+
+### CNN: MaxPool to 3rd Conv layer
+
+Best Val Loss: 0.0221
+Best Val Accuracy: 0.9951
+Train Loss: 0.0162
+Train Accuracy: 0.9958
+0.024651357904076576, 0.9944444298744202
+
+```
+cnn_input_layer = Input((28, 28, 1))
+
+cnn = Conv2D(32, 3, activation='relu', padding='same')(cnn_input_layer)
+cnn = Conv2D(32, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = MaxPool2D(2)(cnn)
+cnn = Dropout(0.2)(cnn)
+
+cnn = Conv2D(64, 3, activation='relu', padding='same')(cnn)
+cnn = Conv2D(64, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = MaxPool2D(2)(cnn)
+cnn = Dropout(0.2)(cnn)
+
+cnn = Conv2D(128, 3, activation='relu', padding='same')(cnn)
+cnn = Conv2D(128, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = MaxPool2D(2)(cnn)
+cnn = Dropout(0.2)(cnn)
+
+cnn = Flatten()(cnn)
+
+cnn = Dense(64, kernel_initializer='he_normal')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = ReLU()(cnn)
+cnn = Dropout(0.2)(cnn)
+
+cnn = Dense(32, kernel_initializer='he_normal')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = ReLU()(cnn)
+cnn = Dropout(0.2)(cnn)
+
+cnn_output_layer = Dense(NUM_CLASSES, activation='softmax')(cnn)
+
+cnn_model = Model(cnn_input_layer, cnn_output_layer, name='CNN')
+
+optimizer = Adam(lr=1e-3)
+batch_size=128
+learning_rate_reducer = ReduceLROnPlateau(
+    monitor='val_loss', 
+    patience=3, 
+    factor=0.5, 
+    min_lr=5e-10,
+    verbose=1, 
+data_augmentator = ImageDataGenerator(
+    rotation_range = 10,  
+    zoom_range = 0.1, 
+    width_shift_range = 0.1, 
+    height_shift_range = 0.1
+)
+```
+
+### CNN: GlobalAvgPool
+
+Best Val Loss: 0.0211
+Best Val Accuracy: 0.9948
+Train Loss: 0.0095
+Train Accuracy: 0.9972
+0.02560603804886341, 0.9928571581840515
+
+```
+cnn_input_layer = Input((28, 28, 1))
+
+cnn = Conv2D(32, 3, activation='relu', padding='same')(cnn_input_layer)
+cnn = Conv2D(32, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = MaxPool2D(2)(cnn)
+cnn = Dropout(0.2)(cnn)
+
+cnn = Conv2D(64, 3, activation='relu', padding='same')(cnn)
+cnn = Conv2D(64, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = MaxPool2D(2)(cnn)
+cnn = Dropout(0.2)(cnn)
+
+cnn = Conv2D(128, 3, activation='relu', padding='same')(cnn)
+cnn = Conv2D(128, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = GlobalMaxPooling2D()(cnn)
+
+cnn = Dense(64, kernel_initializer='he_normal')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = ReLU()(cnn)
+cnn = Dropout(0.2)(cnn)
+
+cnn_output_layer = Dense(NUM_CLASSES, activation='softmax')(cnn)
+
+cnn_model = Model(cnn_input_layer, cnn_output_layer, name='CNN')
+
+optimizer = Adam(lr=1e-3)
+batch_size=128
+learning_rate_reducer = ReduceLROnPlateau(
+    monitor='val_loss', 
+    patience=3, 
+    factor=0.5, 
+    min_lr=5e-10,
+    verbose=1, 
+data_augmentator = ImageDataGenerator(
+    rotation_range = 10,  
+    zoom_range = 0.1, 
+    width_shift_range = 0.1, 
+    height_shift_range = 0.1
+)
+```
+
+### CNN
+
+Best Val Loss: 0.0220
+Best Val Accuracy: 0.9946
+Train Loss: 0.0154
+Train Accuracy: 0.9957
+0.024416828528046608, 0.9936507940292358
+
+```
+cnn_input_layer = Input((28, 28, 1))
+
+cnn = Conv2D(32, 3, activation='relu', padding='same')(cnn_input_layer)
+cnn = Conv2D(32, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = MaxPool2D(2)(cnn)
+cnn = Dropout(0.2)(cnn)
+
+cnn = Conv2D(64, 3, activation='relu', padding='same')(cnn)
+cnn = Conv2D(64, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = MaxPool2D(2)(cnn)
+cnn = Dropout(0.2)(cnn)
+
+cnn = Conv2D(128, 3, activation='relu', padding='same')(cnn)
+cnn = Conv2D(128, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = GlobalAveragePooling2D()(cnn)
+
+cnn = Dense(64, kernel_initializer='he_normal')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = ReLU()(cnn)
+cnn = Dropout(0.2)(cnn)
+
+cnn_output_layer = Dense(NUM_CLASSES, activation='softmax')(cnn)
+
+cnn_model = Model(cnn_input_layer, cnn_output_layer, name='CNN')
+
+optimizer = Adam(lr=1e-3)
+batch_size=128
+learning_rate_reducer = ReduceLROnPlateau(
+    monitor='val_loss', 
+    patience=3, 
+    factor=0.5, 
+    min_lr=5e-10,
+    verbose=1, 
+data_augmentator = ImageDataGenerator(
+    rotation_range = 10,  
+    zoom_range = 0.1, 
+    width_shift_range = 0.1, 
+    height_shift_range = 0.1
+)
+```
+
+### CNN
+
+Best Val Loss: 0.0199
+Best Val Accuracy: 0.9949
+Train Loss: 0.0158
+Train Accuracy: 0.9949
+0.023942016065120697, 0.9946428537368774
+
+```
+from keras.layers import GlobalMaxPooling2D, GlobalAveragePooling2D
+
+cnn_input_layer = Input((28, 28, 1))
+
+cnn = Conv2D(32, 3, activation='relu', padding='same')(cnn_input_layer)
+cnn = Conv2D(32, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = MaxPool2D(2)(cnn)
+cnn = Dropout(0.25)(cnn)
+
+cnn = Conv2D(64, 3, activation='relu', padding='same')(cnn)
+cnn = Conv2D(64, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = MaxPool2D(2)(cnn)
+cnn = Dropout(0.25)(cnn)
+
+cnn = Conv2D(128, 3, activation='relu', padding='same')(cnn)
+cnn = Conv2D(128, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = MaxPool2D(2)(cnn)
+cnn = Dropout(0.25)(cnn)
+
+cnn = Flatten()(cnn)
+
+cnn = Dense(128, kernel_initializer='he_normal')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = ReLU()(cnn)
+cnn = Dropout(0.3)(cnn)
+
+cnn_output_layer = Dense(NUM_CLASSES, activation='softmax')(cnn)
+
+cnn_model = Model(cnn_input_layer, cnn_output_layer, name='CNN')
+
+optimizer = Adam(lr=1e-3)
+batch_size=128
+learning_rate_reducer = ReduceLROnPlateau(
+    monitor='val_loss', 
+    patience=3, 
+    factor=0.5, 
+    min_lr=5e-10,
+    verbose=1, 
+data_augmentator = ImageDataGenerator(
+    rotation_range = 10,  
+    zoom_range = 0.1, 
+    width_shift_range = 0.1, 
+    height_shift_range = 0.1
+)
+```
+
+### CNN: BatchNorm after all Conv layers
+
+Best Val Loss: 0.0194
+Best Val Accuracy: 0.9950
+Train Loss: 0.0177
+Train Accuracy: 0.9943
+0.020568035542964935, 0.9946428537368774
+
+```
+cnn_input_layer = Input((28, 28, 1))
+
+# layer 1
+cnn = Conv2D(32, 3, activation='relu', padding='same')(cnn_input_layer)
+cnn = BatchNormalization()(cnn)
+
+cnn = Conv2D(32, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+
+cnn = MaxPool2D(2)(cnn)
+cnn = Dropout(0.25)(cnn)
+
+# layer 2
+cnn = Conv2D(64, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+
+cnn = Conv2D(64, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+
+cnn = MaxPool2D(2)(cnn)
+cnn = Dropout(0.25)(cnn)
+
+# layer 3
+cnn = Conv2D(128, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+
+cnn = Conv2D(128, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+
+cnn = MaxPool2D(2)(cnn)
+cnn = Dropout(0.25)(cnn)
+
+cnn = Flatten()(cnn)
+
+# layer 4
+cnn = Dense(128, kernel_initializer='he_normal')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = ReLU()(cnn)
+cnn = Dropout(0.3)(cnn)
+
+cnn_output_layer = Dense(NUM_CLASSES, activation='softmax')(cnn)
+
+cnn_model = Model(cnn_input_layer, cnn_output_layer, name='CNN')
+
+optimizer = Adam(lr=1e-3)
+batch_size=128
+learning_rate_reducer = ReduceLROnPlateau(
+    monitor='val_loss', 
+    patience=3, 
+    factor=0.5, 
+    min_lr=5e-10,
+    verbose=1, 
+data_augmentator = ImageDataGenerator(
+    rotation_range = 10,  
+    zoom_range = 0.1, 
+    width_shift_range = 0.1, 
+    height_shift_range = 0.1
+)
+```
+
+### CNN: Exponential Learning Rate Scheduler
+
+Best Val Loss: 0.0228
+Best Val Accuracy: 0.9954
+Train Loss: 0.0181
+Train Accuracy: 0.9943
+0.02234075963497162, 0.9942460060119629
+
+```
+cnn_input_layer = Input((28, 28, 1))
+
+# layer 1
+cnn = Conv2D(32, 3, activation='relu', padding='same')(cnn_input_layer)
+cnn = BatchNormalization()(cnn)
+
+cnn = Conv2D(32, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+
+cnn = MaxPool2D(2)(cnn)
+cnn = Dropout(0.25)(cnn)
+
+# layer 2
+cnn = Conv2D(64, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+
+cnn = Conv2D(64, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+
+cnn = MaxPool2D(2)(cnn)
+cnn = Dropout(0.25)(cnn)
+
+# layer 3
+cnn = Conv2D(128, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+
+cnn = Conv2D(128, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+
+cnn = MaxPool2D(2)(cnn)
+cnn = Dropout(0.25)(cnn)
+
+cnn = Flatten()(cnn)
+
+# layer 4
+cnn = Dense(128, kernel_initializer='he_normal')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = ReLU()(cnn)
+cnn = Dropout(0.3)(cnn)
+
+cnn_output_layer = Dense(NUM_CLASSES, activation='softmax')(cnn)
+
+cnn_model = Model(cnn_input_layer, cnn_output_layer, name='CNN')
+
+optimizer = Adam(lr=1e-3)
+
+learning_rate_scheduler = LearningRateScheduler(lambda epoch: 1e-3 * 0.95 ** epoch)
+
+batch_size=128
+data_augmentator = ImageDataGenerator(
+    rotation_range = 10,  
+    zoom_range = 0.1, 
+    width_shift_range = 0.1, 
+    height_shift_range = 0.1
+)
+```
+
+### CNN: Replaced MaxPools with X-C5S2ReLU
+
+Best Val Loss: 0.0223
+Best Val Accuracy: 0.9951
+Train Loss: 0.0075
+Train Accuracy: 0.9976
+0.020472226664423943, 0.9952380657196045
+
+```
+cnn_input_layer = Input((28, 28, 1))
+
+# layer 1
+cnn = Conv2D(32, 3, activation='relu', padding='same')(cnn_input_layer)
+cnn = BatchNormalization()(cnn)
+
+cnn = Conv2D(32, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+
+#cnn = MaxPool2D(2)(cnn)
+cnn = Conv2D(32, 5, strides=2, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = Dropout(0.25)(cnn)
+
+# layer 2
+cnn = Conv2D(64, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+
+cnn = Conv2D(64, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+
+cnn = Conv2D(64, 5, strides=2, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = Dropout(0.25)(cnn)
+
+# layer 3
+cnn = Conv2D(128, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+
+cnn = Conv2D(128, 3, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+
+cnn = Conv2D(128, 5, strides=2, activation='relu', padding='same')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = Dropout(0.25)(cnn)
+
+cnn = Flatten()(cnn)
+
+# layer 4
+cnn = Dense(128, kernel_initializer='he_normal')(cnn)
+cnn = BatchNormalization()(cnn)
+cnn = ReLU()(cnn)
+cnn = Dropout(0.3)(cnn)
+
+cnn_output_layer = Dense(NUM_CLASSES, activation='softmax')(cnn)
+
+cnn_model = Model(cnn_input_layer, cnn_output_layer, name='CNN')
+
+optimizer = Adam(lr=1e-3)
+
+learning_rate_scheduler = LearningRateScheduler(lambda epoch: 1e-3 * 0.95 ** epoch)
+
+batch_size=128
+data_augmentator = ImageDataGenerator(
+    rotation_range = 10,  
+    zoom_range = 0.1, 
+    width_shift_range = 0.1, 
+    height_shift_range = 0.1
+)
+```
+
+### CNN: Ensamble of 10 CNNs
+
+             Train  Validation 
+
+      loss    0.0228    0.0137
+  accuracy    0.9933    0.9969
+
+Kaggle: 0.99657 (Top 7%)
+
+```
+cnn_input_layer = Input((28, 28, 1))
+
+    # layer 1
+    cnn = Conv2D(32, 3, activation='relu', padding='same')(cnn_input_layer)
+    cnn = BatchNormalization()(cnn)
+
+    cnn = Conv2D(32, 3, activation='relu', padding='same')(cnn)
+    cnn = BatchNormalization()(cnn)
+
+    #cnn = MaxPool2D(2)(cnn)
+    cnn = Conv2D(32, 5, strides=2, activation='relu', padding='same')(cnn)
+    cnn = BatchNormalization()(cnn)
+    cnn = Dropout(0.4)(cnn)
+
+    # layer 2
+    cnn = Conv2D(64, 3, activation='relu', padding='same')(cnn)
+    cnn = BatchNormalization()(cnn)
+
+    cnn = Conv2D(64, 3, activation='relu', padding='same')(cnn)
+    cnn = BatchNormalization()(cnn)
+
+    #cnn = MaxPool2D(2)(cnn)
+    cnn = Conv2D(64, 5, strides=2, activation='relu', padding='same')(cnn)
+    cnn = BatchNormalization()(cnn)
+    cnn = Dropout(0.4)(cnn)
+
+    # layer 3
+    cnn = Conv2D(128, 3, activation='relu', padding='same')(cnn)
+    cnn = BatchNormalization()(cnn)
+
+    cnn = Conv2D(128, 3, activation='relu', padding='same')(cnn)
+    cnn = BatchNormalization()(cnn)
+
+    #cnn = MaxPool2D(2)(cnn)
+    cnn = Conv2D(128, 5, strides=2, activation='relu', padding='same')(cnn)
+    cnn = BatchNormalization()(cnn)
+    cnn = Dropout(0.4)(cnn)
+
+    cnn = Flatten()(cnn)
+
+    # layer 4
+    cnn = Dense(128, kernel_initializer='he_normal')(cnn)
+    cnn = BatchNormalization()(cnn)
+    cnn = ReLU()(cnn)
+    cnn = Dropout(0.4)(cnn)
+
+    cnn_output_layer = Dense(NUM_CLASSES, activation='softmax')(cnn)
+    
+    cnn_model = Model(cnn_input_layer, cnn_output_layer, name='CNN')
+    cnn_model.compile(loss='categorical_crossentropy', optimizer=Adam(learning_rate=1e-3), metrics=['accuracy'])
+```
+
+```
+learning_rate_scheduler = LearningRateScheduler(lambda epoch: 1e-3 * 0.95 ** epoch)
+batch_size = 128
+data_augmentator = ImageDataGenerator(
+    rotation_range = 10,  
+    zoom_range = 0.1, 
+    width_shift_range = 0.1, 
+    height_shift_range = 0.1
+)
 ```
