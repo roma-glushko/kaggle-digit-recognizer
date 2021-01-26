@@ -14,35 +14,35 @@
 
 ### Denses(200, relu) + Dropout(.2) + BatchNorm + Dense(150, relu) + Dropout(.2) + BatchNorm
 
-Best Validation Loss: 0.0810
-Best Validation Accuracy: 0.9771
-Test Validation Loss: 0.0957236960530281
-Test Accuracy: 0.9724206328392029
+- Best Validation Loss: 0.0810
+- Best Validation Accuracy: 0.9771
+- Test Validation Loss: 0.0957236960530281
+- Test Accuracy: 0.9724206328392029
 
 ### Denses(200) + BatchNorm + LeakyReLu + Dropout(.2) + Dense(150) + BatchNorm + LeakyReLu + Dropout(.2) 
 
-Best Validation Loss: 0.1024
-Best Validation Accuracy: 0.9723
-Test Validation Loss: 0.11114469170570374
-Test Accuracy: 0.9676587581634521
+- Best Validation Loss: 0.1024
+- Best Validation Accuracy: 0.9723
+- Test Validation Loss: 0.11114469170570374
+- Test Accuracy: 0.9676587581634521
 
 ### Denses(200) + BatchNorm + ReLu + Dropout(.2) + Dense(150) + BatchNorm + ReLu + Dropout(.2) 
-Best Validation Loss: 0.0800
-Best Validation Accuracy: 0.9789
-Test Validation Loss: 0.09856043756008148
-Test Accuracy: 0.9724206328392029
+- Best Validation Loss: 0.0800
+- Best Validation Accuracy: 0.9789
+- Test Validation Loss: 0.09856043756008148
+- Test Accuracy: 0.9724206328392029
 
 ### Denses(200) + BatchNorm + ReLu + Dropout(.2) + Dense(200) + BatchNorm + ReLu + Dropout(.2) 
-Best Validation Loss: 0.0807
-Best Validation Accuracy: 0.9787
-Test Validation Loss: 0.08998408168554306
-Test Accuracy: 0.9740079641342163
+- Best Validation Loss: 0.0807
+- Best Validation Accuracy: 0.9787
+- Test Validation Loss: 0.08998408168554306
+- Test Accuracy: 0.9740079641342163
 
 ### Denses(512) + BatchNorm + ReLu + Dropout(.2)
-Best Validation Loss: 0.0902
-Best Validation Accuracy: 0.9773
-Test Validation Loss: 0.10907424241304398
-Test Accuracy: 0.9708333611488342
+- Best Validation Loss: 0.0902
+- Best Validation Accuracy: 0.9773
+- Test Validation Loss: 0.10907424241304398
+- Test Accuracy: 0.9708333611488342
 
 ## CNN
 ### Baseline CNN
@@ -116,7 +116,7 @@ batch_size = 64
 
 - Best Val Loss: 0.0375
 - Best Val Accuracy: 0.9902
-- Test: 0.037853945046663284, 0.9896825551986694
+- - Test: 0.037853945046663284, 0.9896825551986694
 - Kaggle: 0.99050
 
 ```
@@ -445,10 +445,10 @@ learning_rate_reducer = ReduceLROnPlateau(
 
 ### CNN: BatchNorm after Conv layers
 
-Best Val Loss: 0.0365
-Best Val Accuracy: 0.9902
-Train Loss: 0.0019
-Train Accuracy: 1.0000
+- Best Val Loss: 0.0365
+- Best Val Accuracy: 0.9902
+- Train Loss: 0.0019
+- Train Accuracy: 1.0000
 0.0390562005341053, 0.9890872836112976
 
 ```
@@ -485,10 +485,10 @@ learning_rate_reducer = ReduceLROnPlateau(
 
 ### CNN: ELU activation
 
-Best Val Loss: 0.0452
-Best Val Accuracy: 0.9873
-Train Loss: 0.0041
-Train Accuracy: 1.0000
+- Best Val Loss: 0.0452
+- Best Val Accuracy: 0.9873
+- Train Loss: 0.0041
+- Train Accuracy: 1.0000
 0.043117161840200424, 0.9857142567634583
 
 ```
@@ -525,10 +525,10 @@ learning_rate_reducer = ReduceLROnPlateau(
 
 ### CNN: 3x BatchNorms
 
-Best Val Loss: 0.0396
-Best Val Accuracy: 0.9879
-Train Loss: 0.0085
-Train Accuracy: 0.9993
+- Best Val Loss: 0.0396
+- Best Val Accuracy: 0.9879
+- Train Loss: 0.0085
+- Train Accuracy: 0.9993
 0.04150589182972908, 0.9878968000411987
 
 ```
@@ -566,10 +566,10 @@ learning_rate_reducer = ReduceLROnPlateau(
 
 ### CNN: Adam(1e-3)
 
-Best Val Loss: 0.0323
-Best Val Accuracy: 0.9917
-Train Loss: 0.0010
-Train Accuracy: 0.9998
+- Best Val Loss: 0.0323
+- Best Val Accuracy: 0.9917
+- Train Loss: 0.0010
+- Train Accuracy: 0.9998
 0.04256705939769745, 0.9908730387687683
 
 ```
@@ -607,10 +607,10 @@ learning_rate_reducer = ReduceLROnPlateau(
 
 ### CNN: Adam(1e-4)
 
-Best Val Loss: 0.0473
-Best Val Accuracy: 0.9883
-Train Loss: 0.0270
-Train Accuracy: 0.9963
+- Best Val Loss: 0.0473
+- Best Val Accuracy: 0.9883
+- Train Loss: 0.0270
+- Train Accuracy: 0.9963
 0.03927315026521683, 0.9882936477661133
 
 ```
@@ -648,10 +648,10 @@ learning_rate_reducer = ReduceLROnPlateau(
 
 ### CNN: MaxPooling (No Strides)
 
-Best Val Loss: 0.0335
-Best Val Accuracy: 0.9907
-Train Loss: 0.0018
-Train Accuracy: 0.9998
+- Best Val Loss: 0.0335
+- Best Val Accuracy: 0.9907
+- Train Loss: 0.0018
+- Train Accuracy: 0.9998
 0.031560249626636505, 0.9916666746139526
 Kaggle: 0.99064 (Top 35%)
 
@@ -690,10 +690,10 @@ learning_rate_reducer = ReduceLROnPlateau(
 
 ### CNN: Dropout(0.3)
 
-Best Val Loss: 0.0333
-Best Val Accuracy: 0.9914
-Train Loss: 0.0052
-Train Accuracy: 0.9988
+- Best Val Loss: 0.0333
+- Best Val Accuracy: 0.9914
+- Train Loss: 0.0052
+- Train Accuracy: 0.9988
 0.03728742152452469, 0.9892857074737549
 
 ```
@@ -731,10 +731,10 @@ learning_rate_reducer = ReduceLROnPlateau(
 
 ### CNN: 2x Denses
 
-Best Val Loss: 0.0360
-Best Val Accuracy: 0.9907
-Train Loss: 0.0010
-Train Accuracy: 0.9999
+- Best Val Loss: 0.0360
+- Best Val Accuracy: 0.9907
+- Train Loss: 0.0010
+- Train Accuracy: 0.9999
 0.03959345445036888, 0.9894841313362122
 
 ```
@@ -777,10 +777,10 @@ learning_rate_reducer = ReduceLROnPlateau(
 
 ### CNN: 2x Doubled Conv layers (With error)
 
-Best Val Loss: 0.0321
-Best Val Accuracy: 0.9918
-Train Loss: 0.0008
-Train Accuracy: 1.0000
+- Best Val Loss: 0.0321
+- Best Val Accuracy: 0.9918
+- Train Loss: 0.0008
+- Train Accuracy: 1.0000
 0.03245595842599869, 0.9914682507514954
 Kaggle: 0.99207 (Top 27%)
 
@@ -821,10 +821,10 @@ learning_rate_reducer = ReduceLROnPlateau(
 
 ### CNN: 2x Doubled Conv layers
 
-Best Val Loss: 0.0276
-Best Val Accuracy: 0.9932
-Train Loss: 0.0008
-Train Accuracy: 1.0000
+- Best Val Loss: 0.0276
+- Best Val Accuracy: 0.9932
+- Train Loss: 0.0008
+- Train Accuracy: 1.0000
 0.030262907966971397, 0.9928571581840515
 Kaggle: 0.99228
 
@@ -864,10 +864,10 @@ learning_rate_reducer = ReduceLROnPlateau(
 
 ### CNN: He uniform
 
-Best Val Loss: 0.0355
-Best Val Accuracy: 0.9919
-Train Loss: 0.0006
-Train Accuracy: 0.9999
+- Best Val Loss: 0.0355
+- Best Val Accuracy: 0.9919
+- Train Loss: 0.0006
+- Train Accuracy: 0.9999
 0.03696111589670181, 0.9908730387687683
 
 ```
@@ -906,10 +906,10 @@ learning_rate_reducer = ReduceLROnPlateau(
 
 ### CNN: He normal
 
-Best Val Loss: 0.0289
-Best Val Accuracy: 0.9931
-Train Loss: 0.0008
-Train Accuracy: 0.9999
+- Best Val Loss: 0.0289
+- Best Val Accuracy: 0.9931
+- Train Loss: 0.0008
+- Train Accuracy: 0.9999
 0.03536858782172203, 0.9916666746139526
 
 ```
@@ -944,10 +944,10 @@ learning_rate_reducer = ReduceLROnPlateau(
 
 ### CNN: 2 Conv with Dropouts (0.2)
 
-Best Val Loss: 0.0245
-Best Val Accuracy: 0.9939
-Train Loss: 0.0023
-Train Accuracy: 0.9996
+- Best Val Loss: 0.0245
+- Best Val Accuracy: 0.9939
+- Train Loss: 0.0023
+- Train Accuracy: 0.9996
 0.031296174973249435, 0.9930555820465088
 
 ```
@@ -989,10 +989,10 @@ learning_rate_reducer = ReduceLROnPlateau(
 
 ### CNN: 2 Conv with Dropouts (0.4)
 
-Best Val Loss: 0.0245
-Best Val Accuracy: 0.9942
-Train Loss: 0.0143
-Train Accuracy: 0.9959
+- Best Val Loss: 0.0245
+- Best Val Accuracy: 0.9942
+- Train Loss: 0.0143
+- Train Accuracy: 0.9959
 0.02474787086248398, 0.9938492178916931
 
 ```
@@ -1034,10 +1034,10 @@ learning_rate_reducer = ReduceLROnPlateau(
 
 ### CNN: 3 Double Conv with Droupouts (0.4) and BatchNorms
 
-Best Val Loss: 0.0240
-Best Val Accuracy: 0.9943
-Train Loss: 0.0078
-Train Accuracy: 0.9975
+- Best Val Loss: 0.0240
+- Best Val Accuracy: 0.9943
+- Train Loss: 0.0078
+- Train Accuracy: 0.9975
 0.02387743815779686, 0.9946428537368774
 
 ```
@@ -1083,10 +1083,10 @@ learning_rate_reducer = ReduceLROnPlateau(
 
 ### CNN:
 
-Best Val Loss: 0.0227
-Best Val Accuracy: 0.9944
-Train Loss: 0.0068
-Train Accuracy: 0.9980
+- Best Val Loss: 0.0227
+- Best Val Accuracy: 0.9944
+- Train Loss: 0.0068
+- Train Accuracy: 0.9980
 0.02724132500588894, 0.9928571581840515
 
 ```
@@ -1132,10 +1132,10 @@ learning_rate_reducer = ReduceLROnPlateau(
 
 ### CNN: 2x Dense layers
 
-Best Val Loss: 0.0292
-Best Val Accuracy: 0.9938
-Train Loss: 0.0382
-Train Accuracy: 0.9915
+- Best Val Loss: 0.0292
+- Best Val Accuracy: 0.9938
+- Train Loss: 0.0382
+- Train Accuracy: 0.9915
 0.030066518113017082, 0.9934523701667786
 
 Too much regularization
@@ -1188,10 +1188,10 @@ learning_rate_reducer = ReduceLROnPlateau(
 
 ### CNN:
 
-Best Val Loss: 0.0255
-Best Val Accuracy: 0.9945
-Train Loss: 0.0115
-Train Accuracy: 0.9971
+- Best Val Loss: 0.0255
+- Best Val Accuracy: 0.9945
+- Train Loss: 0.0115
+- Train Accuracy: 0.9971
 0.030067507177591324, 0.9920634627342224
 
 ```
@@ -1242,10 +1242,10 @@ learning_rate_reducer = ReduceLROnPlateau(
 
 ### CNN: Data Augmentation
 
-Best Val Loss: 0.0221
-Best Val Accuracy: 0.9956
-Train Loss: 0.0250
-Train Accuracy: 0.9943
+- Best Val Loss: 0.0221
+- Best Val Accuracy: 0.9956
+- Train Loss: 0.0250
+- Train Accuracy: 0.9943
 0.026448724791407585, 0.9930555820465088
 
 ```
@@ -1303,10 +1303,10 @@ data_augmentator = ImageDataGenerator(
 
 ### CNN
 
-Best Val Loss: 0.0216
-Best Val Accuracy: 0.9957
-Train Loss: 0.0229
-Train Accuracy: 0.9943
+- Best Val Loss: 0.0216
+- Best Val Accuracy: 0.9957
+- Train Loss: 0.0229
+- Train Accuracy: 0.9943
 0.026916267350316048, 0.9930555820465088
 
 ```
@@ -1363,10 +1363,10 @@ data_augmentator = ImageDataGenerator(
 
 ### CNN: MaxPool to 3rd Conv layer
 
-Best Val Loss: 0.0221
-Best Val Accuracy: 0.9951
-Train Loss: 0.0162
-Train Accuracy: 0.9958
+- Best Val Loss: 0.0221
+- Best Val Accuracy: 0.9951
+- Train Loss: 0.0162
+- Train Accuracy: 0.9958
 0.024651357904076576, 0.9944444298744202
 
 ```
@@ -1424,10 +1424,10 @@ data_augmentator = ImageDataGenerator(
 
 ### CNN: GlobalAvgPool
 
-Best Val Loss: 0.0211
-Best Val Accuracy: 0.9948
-Train Loss: 0.0095
-Train Accuracy: 0.9972
+- Best Val Loss: 0.0211
+- Best Val Accuracy: 0.9948
+- Train Loss: 0.0095
+- Train Accuracy: 0.9972
 0.02560603804886341, 0.9928571581840515
 
 ```
@@ -1477,10 +1477,10 @@ data_augmentator = ImageDataGenerator(
 
 ### CNN
 
-Best Val Loss: 0.0220
-Best Val Accuracy: 0.9946
-Train Loss: 0.0154
-Train Accuracy: 0.9957
+- Best Val Loss: 0.0220
+- Best Val Accuracy: 0.9946
+- Train Loss: 0.0154
+- Train Accuracy: 0.9957
 0.024416828528046608, 0.9936507940292358
 
 ```
@@ -1530,11 +1530,11 @@ data_augmentator = ImageDataGenerator(
 
 ### CNN
 
-Best Val Loss: 0.0199
-Best Val Accuracy: 0.9949
-Train Loss: 0.0158
-Train Accuracy: 0.9949
-0.023942016065120697, 0.9946428537368774
+- Best Val Loss: 0.0199
+- Best Val Accuracy: 0.9949
+- Train Loss: 0.0158
+- Train Accuracy: 0.9949
+- Test: 0.023942016065120697, 0.9946428537368774
 
 ```
 from keras.layers import GlobalMaxPooling2D, GlobalAveragePooling2D
@@ -1588,11 +1588,11 @@ data_augmentator = ImageDataGenerator(
 
 ### CNN: BatchNorm after all Conv layers
 
-Best Val Loss: 0.0194
-Best Val Accuracy: 0.9950
-Train Loss: 0.0177
-Train Accuracy: 0.9943
-0.020568035542964935, 0.9946428537368774
+- Best Val Loss: 0.0194
+- Best Val Accuracy: 0.9950
+- Train Loss: 0.0177
+- Train Accuracy: 0.9943
+- Test: 0.020568035542964935, 0.9946428537368774
 
 ```
 cnn_input_layer = Input((28, 28, 1))
@@ -1657,11 +1657,11 @@ data_augmentator = ImageDataGenerator(
 
 ### CNN: Exponential Learning Rate Scheduler
 
-Best Val Loss: 0.0228
-Best Val Accuracy: 0.9954
-Train Loss: 0.0181
-Train Accuracy: 0.9943
-0.02234075963497162, 0.9942460060119629
+- Best Val Loss: 0.0228
+- Best Val Accuracy: 0.9954
+- Train Loss: 0.0181
+- Train Accuracy: 0.9943
+- Test: 0.02234075963497162, 0.9942460060119629
 
 ```
 cnn_input_layer = Input((28, 28, 1))
@@ -1723,11 +1723,11 @@ data_augmentator = ImageDataGenerator(
 
 ### CNN: Replaced MaxPools with X-C5S2ReLU
 
-Best Val Loss: 0.0223
-Best Val Accuracy: 0.9951
-Train Loss: 0.0075
-Train Accuracy: 0.9976
-0.020472226664423943, 0.9952380657196045
+- Best Val Loss: 0.0223
+- Best Val Accuracy: 0.9951
+- Train Loss: 0.0075
+- Train Accuracy: 0.9976
+- Test: 0.020472226664423943, 0.9952380657196045
 
 ```
 cnn_input_layer = Input((28, 28, 1))
@@ -1793,10 +1793,12 @@ data_augmentator = ImageDataGenerator(
 
 ### CNN: Ensamble of 10 CNNs
 
+```
              Train  Validation 
 
       loss    0.0228    0.0137
   accuracy    0.9933    0.9969
+```
 
 Kaggle: 0.99657 (Top 7%)
 
