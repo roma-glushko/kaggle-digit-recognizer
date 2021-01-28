@@ -1,5 +1,7 @@
 # Kaggle: Digit Recognizer
 
+<img style="margin-left:0" src="https://i.dlpng.com/static/png/1280814-best-25-number-writing-practice-ideas-on-pinterest-writing-writing-numbers-png-1280_752_preview.png" width="600px">
+
 This is a solution for Kaggle Digit Recognizer competition. 
 It's based on legendary MNIST dataset which contains 70,000 handwritten digits in 28x28 format.
 
@@ -29,3 +31,4 @@ Project requires Python 3.8.6 as it uses TensorFlow2.
 
 ## T-SNE Visualization
 
+<img src="https://raw.githubusercontent.com/roma-glushko/kaggle-digit-recognizer/master/docs/tsne.png" width="600px" />
